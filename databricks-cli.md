@@ -1,8 +1,12 @@
 # Databricks CLI commands
-```databricks pipelines stop b7c2ec29-7ccd-4955-86da-acc868e5245e --profile sandana-local-profile-dev```
+```bash
+databricks pipelines stop b7c2ec29-7ccd-4955-86da-acc868e5245e --profile sandana-local-profile-dev
+```
 - Stops a running pipeline in databricks environment if the profile has the access to do so
 
-```databricks workspace export "//customer_facing/commercial/cuf_sap_foundation/state/metadata.json" --profile sandana-local-profile-dev```
+```bash
+databricks workspace export "//customer_facing/commercial/cuf_sap_foundation/state/metadata.json" --profile sandana-local-profile-dev
+```
 - Shows the file content in the Git bash terminal from Databricks Workspace as given below
 ```json
 {
