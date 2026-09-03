@@ -8,6 +8,12 @@ databricks pipelines stop b7c2ec29-7ccd-4955-86da-acc868e5245e --profile sandana
 databricks workspace export "//customer_facing/commercial/cuf_sap_foundation/state/metadata.json" --profile sandana-local-profile-dev
 ```
 - Shows the file content in the Git bash terminal from Databricks Workspace as given below
+
+```bash
+databricks workspace export "//Workspace/Users/sandanakishnan.s@eteximc.com/SQL_Queries/s4_sales_invoice_lines_full_query.dbquery.ipynb" --file ./s4_sales_invoice_lines_full_query.dbquery.ipynb --format SOURCE --profile sandana-local-profile-dev
+```
+- To download the databricks SQL editor (dbquery.ipynb) to local, direct export is available only for Notebook Editor (formats available are SOURCE, HTML, DBC, JUPYTER, AUTO)
+  
 ```json
 {
   "version": 1,
