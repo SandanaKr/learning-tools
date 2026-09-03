@@ -5,7 +5,7 @@ databricks pipelines stop b7c2ec29-7ccd-4955-86da-acc868e5245e --profile sandana
 - Stops a running pipeline in databricks environment if the profile has the access to do so
 
 ```bash
-databricks workspace export "//customer_facing/commercial/cuf_sap_foundation/state/metadata.json" --profile sandana-local-profile-dev
+databricks workspace export "//Workspace/customer_facing/commercial/cuf_sap_foundation/state/metadata.json" --profile sandana-local-profile-dev
 ```
 - Shows the file content in the Git bash terminal from Databricks Workspace as given below
 
@@ -74,7 +74,7 @@ databricks workspace export "//Workspace/Users/sandanakishnan.s@eteximc.com/SQL_
 ```
 
 ```databricks bundle deploy -t T --profile sandana-local-profile-dev```
-- Deploys the bundle to the target environment
+- Deploys the bundle to the target environment (T)
 
 ```databricks bundle summary -t T --profile sandana-local-profile-dev```
 This gives the below output
@@ -124,3 +124,14 @@ Resources:
       Name: staging
       URL:  https://adb-7181820732839861.1.azuredatabricks.net/explore/data/volumes/customer_facing_commercial_d/foundation_config/staging
 ```
+
+```bash
+databricks jobs list --profile sandana-local-profile-dev | grep -i "cuf_fdn_foundation"
+```
+- Lists all the jobs matching the search pattern
+  
+grep - search for a pattern
+-i - case insensitive
+
+
+
