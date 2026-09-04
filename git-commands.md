@@ -13,3 +13,14 @@ Date:   Fri Aug 28 10:27:16 2026 +0200
  .../src/pipelines/foundation_engine.ipynb          | 744 ++++++++++++++++++++-
  1 file changed, 743 insertions(+), 1 deletion(-)
 ```
+## I created a new branch feat/commercial/fsd/MPER3 from feat/commercial/fsd/MPER, the MPER has the latest commit but in MPER3 I need to go to the old commit 3c8c5549 - how to do that:
+### Method 1 - Just Checkout an old commit - useful for adhoc testing:
+```bash
+git checkout 3c8c5549
+```
+### Method 2 - 
+```bash
+git checkout feat/commercial/fsd/MPER3
+git reset --hard 3c8c5549
+git push origin feat/commercial/fsd/MPER3 --force
+```
