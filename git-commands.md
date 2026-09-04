@@ -253,6 +253,110 @@ Your branch is up to date with 'origin/feat/commercial/fsd/common_branch'.
 
 nothing to commit, working tree clean
 ```
+### Local to local new branch creation:
+```
+git checkout -b feat/commercial/fsd/MPER4 feat/commercial/fsd/MPER3
+git push -u origin feat/commercial/fsd/MPER4
+# or
+git switch -c feat/commercial/fsd/MPER4 feat/commercial/fsd/MPER3
+git push -u origin feat/commercial/fsd/MPER4
+```
+### Origin to local new branch creation:
+git fetch origin
+git checkout -b feat/commercial/fsd/MPER4 origin/feat/commercial/fsd/MPER3
+git push -u origin feat/commercial/fsd/MPER4
+# or
+git switch -c feat/commercial/fsd/MPER4 origin/feat/commercial/fsd/MPER3
+git push -u origin feat/commercial/fsd/MPER4
+### Git fetch
+```bash
+git fetch origin # fetches the remote references to local without changing the working directory
+git fetch origin +refs/heads/*:refs/remotes/origin/* # low level fetch spec
+git fetch 
+git fetch origin <branch> # fetches only that branch from the remote origin
+git fetch --all
+git fetch --prune # cleans up the local references of deleted branches
+git fetch --tags # fetches along with tags; tags are fixed name pointer to a specific commits, used to point the release versions like say git tag v1.0.0
+git fetch --dry-run # shows what would be fetched
+# Ex. git fetch --dry-run --prune origin - example usable before destructive change
+From https://github.com/org/repo
+ - [deleted]         (none)     -> origin/feat/old-experiment
+   a1b2c3d..e4f5g6h  main       -> origin/main
+```
+### Git pull
+- git pull = git fetch + git merge or git rebase - based on the config
+```
+git pull origin main
+git pull
+git pull --rebase
+git pull --ff-only
+git pull --no-commit
+git pull --tags # tags are fixed name pointer to a specific commits, used to point the release versions
+git pull --all
+```
+### Folking
+- Suppose you want to contribute to an open source project, below are the steps
+  1. Folk their repo (creates the personal copy of someone elses repo)
+  2. Clone the fork to your machine
+  3. Make changes and commit to your fork
+  4. Create a pull request from your folk to the original repo so that the owners review and merge your changes
+ 
+### Step 1 — Folk the repo
+### Step 2 — Clone
+Ex.: 
+```
+git clone https://github.com/yourname/linux.git
+cd linux
+```
+At this point, git sets up one remote "origin" pointing to your name (the folked repo)
 
+### Step 3 — But also you need to be in sync with the original project
+```
+git remote add upstream https://github.com/torvalds/linux.git
+git remote -v
+origin    https://github.com/yourname/linux.git (fetch)
+origin    https://github.com/yourname/linux.git (push)
+upstream  https://github.com/torvalds/linux.git (fetch)
+upstream  https://github.com/torvalds/linux.git (push)
+```
+- At this point there are 2 remotes, origin and upstream
+### Step 4 — Get the latest changes from the original project
+```
+git fetch upstream
+```
+### Step 5 — Bring those changes into your local branch
+```
+git checkout main
+git merge upstream/main
+### Step 6 — Push the updated main to your own fork
+```
+git push origin main
+```
+### Step 7 — Update your feature branch with the latest main (resolve conflicts with YOUR changes here)
+```
+git checkout feature/my-change
+git merge main
+```
+```
+# resolve conflicts in each flagged file
+git add <resolved-file>
+git commit
+```
+### Step 8 — Push your feature branch to your fork
+```
+git push origin feature/my-change
+```
+### Step 9 — Open the Pull Request
+Set: base repository = original project, base branch = main ← head repository = your fork, compare branch = feature/my-change.
+### Summary:
+```
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main
 
-
+git checkout feature/my-change
+git merge main              # resolve conflicts here if any
+git push origin feature/my-change
+# then open PR on GitHub UI
+```
