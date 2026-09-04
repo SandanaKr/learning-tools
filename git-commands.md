@@ -328,6 +328,7 @@ git fetch upstream
 ```
 git checkout main
 git merge upstream/main
+```
 ### Step 6 — Push the updated main to your own fork
 ```
 git push origin main
