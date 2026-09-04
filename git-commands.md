@@ -361,3 +361,19 @@ git merge main              # resolve conflicts here if any
 git push origin feature/my-change
 # then open PR on GitHub UI
 ```
+### Git Merge:
+```
+git checkout feature
+git merge main                  # standard merge, creates merge commit if diverged
+git merge --no-ff main          # force a merge commit even if fast-forward is possible
+git merge --ff-only main         # only merge if it can fast-forward; fail otherwise (no merge commit ever)
+git merge --squash main          # combine all incoming commits into one, but don't commit yet — you commit manually after
+git merge --abort                # cancel a merge that's stuck in conflict
+```
+### Git rebase
+git checkout feature
+git rebase main                  # replay feature's commits on top of main
+git rebase -i main               # interactive rebase — reorder, squash, edit, drop commits along the way
+git rebase --continue            # after resolving a conflict during rebase, continue replaying remaining commits
+git rebase --abort                # cancel the rebase, go back to how things were before starting
+git rebase --onto newbase oldbase feature   # advanced: move a branch's commits onto a different base entirely
