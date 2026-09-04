@@ -140,16 +140,118 @@ git reset HEAD~1
 ```
 git reset --hard HEAD~1
 ```
+##### After hard reset if you still want to get back the changes
+```
+git reflog
+git reset --hard <commit-hash-from-reflog>
+```
 ##### To check the commits before pushing
 ```
 # per commit
 git log origin/feat/commercial/fsd/common_branch..HEAD
+commit 607e5a030ff3a00294a6395e5fc45e6de41e7865 (HEAD -> feat/commercial/fsd/common_branch)
+Author: Sandanakishnan S <sandanakishnan.s@etexgroup.com>
+Date:   Fri Sep 4 18:40:00 2026 +0530
+
+    Added the second file for testing
+
+commit bb68c484df19b46798d27aa8409d6fb01f045e51
+Author: Sandanakishnan S <sandanakishnan.s@etexgroup.com>
+Date:   Fri Sep 4 18:01:04 2026 +0530
+
+    Test
+
 git log --name-only origin/feat/commercial/fsd/common_branch..HEAD # list of files changed per commit
+commit 607e5a030ff3a00294a6395e5fc45e6de41e7865 (HEAD -> feat/commercial/fsd/common_branch)
+Author: Sandanakishnan S <sandanakishnan.s@etexgroup.com>
+Date:   Fri Sep 4 18:40:00 2026 +0530
+
+    Added the second file for testing
+
+commercial/foundation/config/canonical/s4_sales_invoice_lines.yml
+
+commit bb68c484df19b46798d27aa8409d6fb01f045e51
+Author: Sandanakishnan S <sandanakishnan.s@etexgroup.com>
+Date:   Fri Sep 4 18:01:04 2026 +0530
+
+    Test
+
+commercial/foundation/config/canonical/s4_sales_invoices.yml
 git log --name-status origin/feat/commercial/fsd/common_branch..HEAD
+commit 607e5a030ff3a00294a6395e5fc45e6de41e7865 (HEAD -> feat/commercial/fsd/common_branch)
+Author: Sandanakishnan S <sandanakishnan.s@etexgroup.com>
+Date:   Fri Sep 4 18:40:00 2026 +0530
+
+    Added the second file for testing
+
+M       commercial/foundation/config/canonical/s4_sales_invoice_lines.yml
+
+commit bb68c484df19b46798d27aa8409d6fb01f045e51
+Author: Sandanakishnan S <sandanakishnan.s@etexgroup.com>
+Date:   Fri Sep 4 18:01:04 2026 +0530
+
+    Test
+
+M       commercial/foundation/config/canonical/s4_sales_invoices.yml
+
+
 git log --stat origin/feat/commercial/fsd/common_branch..HEAD
+commit 607e5a030ff3a00294a6395e5fc45e6de41e7865 (HEAD -> feat/commercial/fsd/common_branch)
+Author: Sandanakishnan S <sandanakishnan.s@etexgroup.com>
+Date:   Fri Sep 4 18:40:00 2026 +0530
+
+    Added the second file for testing
+
+ commercial/foundation/config/canonical/s4_sales_invoice_lines.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit bb68c484df19b46798d27aa8409d6fb01f045e51
+Author: Sandanakishnan S <sandanakishnan.s@etexgroup.com>
+Date:   Fri Sep 4 18:01:04 2026 +0530
+
+    Test
+
+ commercial/foundation/config/canonical/s4_sales_invoices.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 # total diff with HEAD
 git diff --name-status origin/feat/commercial/fsd/common_branch..HEAD # Gives just the name of the files changed
+M       commercial/foundation/config/canonical/s4_sales_invoices.yml
+M       commercial/foundation/config/canonical/s4_sales_invoice_lines.yml
 git diff --stat origin/feat/commercial/fsd/common_branch..HEAD # One line summary for each file
+ commercial/foundation/config/canonical/s4_sales_invoices.yml | 2 +-
+commercial/foundation/config/canonical/s4_sales_invoice_lines.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+### Reference Logs
+- gits log of changes to the references of HEAD
+```
+git reflog
+607e5a0 (HEAD -> feat/commercial/fsd/common_branch) HEAD@{0}: commit: Added the second file for testing
+bb68c48 HEAD@{1}: commit: Test
+5cc3087 (origin/feat/commercial/fsd/common_branch) HEAD@{2}: commit: Added the desc columns
+28cb31f HEAD@{3}: pull: Fast-forward
+```
+```
+git reset --hard bb68c48
+HEAD is now at bb68c48 Test
+```
+```
+git reflog
+bb68c48 (HEAD -> feat/commercial/fsd/common_branch) HEAD@{0}: reset: moving to bb68c48
+607e5a0 HEAD@{1}: commit: Added the second file for testing
+bb68c48 (HEAD -> feat/commercial/fsd/common_branch) HEAD@{2}: commit: Test
+```
+```
+git reset --hard 5cc3087
+HEAD is now at 5cc3087 Added the desc columns
+```
+```
+git status
+On branch feat/commercial/fsd/common_branch
+Your branch is up to date with 'origin/feat/commercial/fsd/common_branch'.
+
+nothing to commit, working tree clean
 ```
 
 
